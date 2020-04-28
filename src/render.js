@@ -3,7 +3,7 @@ const fs = require('fs');
 //Electron Imports
 const { dialog } = require('electron').remote;
 
-// Dom Handlers
+// Dom Elements
 const btnSource = document.getElementById('source');
 const btnDestination = document.getElementById('destination');
 const btnStart = document.getElementById('start');
@@ -15,13 +15,9 @@ const utils = require('./utils.js');
 let sourcePath;
 let destinationPath;
 
-
-console.log('Avocado Organiser');
-
 //event handlers
 
 btnSource.addEventListener('click', () => {
-  console.log("Source clicked");
   dialog.showOpenDialog({
     properties: ['openDirectory']
   }).then((data) =>{
@@ -30,7 +26,6 @@ btnSource.addEventListener('click', () => {
 })
 
 btnDestination.addEventListener('click', () => {
-  console.log("Destination clicked");
   dialog.showOpenDialog({
     properties: ['openDirectory']
   }).then((data) =>{
@@ -39,8 +34,6 @@ btnDestination.addEventListener('click', () => {
 })
 
 btnStart.addEventListener('click', () => {
-  console.log("Start clicked");
-  console.log(`Source: ${sourcePath} | Destination: ${destinationPath}`);
   try{
     getAllFiles(sourcePath, destinationPath);
     console.log('All done!');
@@ -49,6 +42,8 @@ btnStart.addEventListener('click', () => {
   }
 
 })
+
+//Main Script
 
 function getAllFiles(path, destination){
   const arrFiles = fs.readdirSync(path, {withFileTypes: true});

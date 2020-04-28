@@ -1,6 +1,9 @@
 const fs = require('fs');
+//Global Variable to keep track of name repeated files moved.
+let count = 1;
 
 module.exports = {
+
   getDate: function (file) {
     const date = [];
     const arrDate = fs.statSync(file).birthtime.toString().split(' ');
@@ -34,10 +37,17 @@ module.exports = {
     this.createDayFolder(destination, date[0], date[1], date[2])
   },
 
-// Move this to a recursive function
  moveFile: function (path, destination, file, date) {
     const source = `${path}/${file}`
-    const destinationPath = `${destination}/${date[0]}/${date[1]}/${date[2]}/${file}`;
-    fs.renameSync(source, destinationPath)
+    let destinationPath = `${destination}/${date[0]}/${date[1]}/${date[2]}/${file}`;
+    if(!fs.existsSync(destinationPath)){
+      fs.renameSync(source, destinationPath)
+    } else {
+      const [fileName, ext] = [...file.split('.')]
+      destinationPath = `${destination}/${date[0]}/${date[1]}/${date[2]}/${fileName}${count}.${ext}`;
+      fs.renameSync(source, destinationPath)
+      count = count + 1;
+    }
   }
+
 }
