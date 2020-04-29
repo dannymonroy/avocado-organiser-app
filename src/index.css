@@ -1,7 +1,115 @@
+*{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+ 
+}
+
+html{
+  background-color: #603217;
+  min-width: 800;
+  min-height: 600;
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
-  background-color: greenyellow;
+  background-color: #C9EC71;
+  color: #603217;
+  border: solid 15px #603217;
+  border-radius: 5%;
+}
+
+.main-container{
+  padding: 1%;
+  margin: auto 0;
+  
+}
+
+img{
+  max-width:100%;
+  max-height:100%;
+}
+
+.button-pick{
+  background-color: #B1732A;
+  border: none;
+  border-radius: 100px;
+  /* padding: 0.8rem; */
+  font-size: 1rem;
+  color: #FFFFFF
+}
+
+.button-pick:hover{
+  font-weight: bold;
+  background-color: #603217;
+}
+
+.button-container{
+  margin-bottom: 2%;
+  padding: 2% 0;
+}
+
+.controls{
+  display: flex;
+  margin: 4%;
+}
+
+.button-pick{
+  flex: 1;
+  width: 100px;
+  margin: 10px auto;
+  display: block;
+  border: solid black;
+  cursor: pointer;
+  
+}
+
+.button-container-start{
+  display: flex;
+}
+
+.button-submit{
+  color: #FFFFFF;
+  background-color: #603217;
+  font-size: 1rem;
+  height: 30px;
+  border: none;
+  margin: auto 0;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.button-submit:hover{
+  background-color: #9BCB4D;
+  font-weight: bold;
+  color: #603217;
+}
+
+
+.display-folder{
+  font-weight: bold;
+}
+
+hr{
+  border: solid 1px #B1732A;
+  margin: 20px 0;
+}
+
+.success{
+  position: fixed;
+  border: solid black;
+  top: 20px;
+  left: 20px;
+  transform: rotate(-20deg);
+  border-radius: 100%;
+  text-align: center;
+  background-color: rebeccapurple;
+  color: white;
+  height: 5rem;
+  width: 5rem;
+  visibility: hidden;
 }
