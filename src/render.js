@@ -7,8 +7,9 @@ const { dialog } = require('electron').remote;
 const btnSource = document.getElementById('source');
 const btnDestination = document.getElementById('destination');
 const btnStart = document.getElementById('start');
-const spanSource = document.getElementById('input')
-const spanDestination = document.getElementById('output')
+const spanSource = document.getElementById('input');
+const spanDestination = document.getElementById('output');
+const success = document.getElementById('success');
 
 //App Imports
 const utils = require('./utils.js');
@@ -17,7 +18,7 @@ const utils = require('./utils.js');
 let sourcePath;
 let destinationPath;
 
-//event handlers
+//Event handlers
 
 btnSource.addEventListener('click', () => {
   dialog.showOpenDialog({
@@ -40,12 +41,16 @@ btnDestination.addEventListener('click', () => {
 btnStart.addEventListener('click', () => {
   try{
     getAllFiles(sourcePath, destinationPath);
-    console.log('All done!');
+    utils.updateUponSuccess(spanSource, spanDestination, success);
   } catch (err) {
     console.log('No folder with that name in this location', err);
   }
 
 })
+
+success.addEventListener('click', (event) => {
+  event.target.style.visibility = "hidden";
+});
 
 //Main Script
 

@@ -112,4 +112,5 @@ hr{
   height: 5rem;
   width: 5rem;
   visibility: hidden;
+  cursor: pointer;
 }

@@ -53,6 +53,12 @@ module.exports = {
   displayFolder: function(elem, str){
     const arr = str.split('/');
     elem.innerHTML = arr.pop();
+  },
+
+  updateUponSuccess: function(inputElem, outputElem, successElem){
+    inputElem.innerHTML = "";
+    outputElem.innerHTML = "";
+    successElem.style.visibility = 'visible';
   }
 
 }
