@@ -7,6 +7,8 @@ const { dialog } = require('electron').remote;
 const btnSource = document.getElementById('source');
 const btnDestination = document.getElementById('destination');
 const btnStart = document.getElementById('start');
+const spanSource = document.getElementById('input')
+const spanDestination = document.getElementById('output')
 
 //App Imports
 const utils = require('./utils.js');
@@ -22,7 +24,8 @@ btnSource.addEventListener('click', () => {
     properties: ['openDirectory']
   }).then((data) =>{
     sourcePath = data.filePaths[0];
-  });
+    utils.displayFolder(spanSource, sourcePath);
+  })
 })
 
 btnDestination.addEventListener('click', () => {
@@ -30,6 +33,7 @@ btnDestination.addEventListener('click', () => {
     properties: ['openDirectory']
   }).then((data) =>{
     destinationPath = data.filePaths[0];
+    utils.displayFolder(spanDestination, destinationPath);
   });
 })
 

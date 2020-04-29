@@ -48,6 +48,11 @@ module.exports = {
       fs.renameSync(source, destinationPath)
       count = count + 1;
     }
+  },
+
+  displayFolder: function(elem, str){
+    const arr = str.split('/');
+    elem.innerHTML = arr.pop();
   }
 
 }

@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Avocado Organiser</title>
-    <script src="render.js" defer></script>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-      <div class="main-container">
-      <img src="./assets/avo_org_app.png"/>
 
-      <h2>Use when you have a mess of files!</h2>
+<head>
+  <meta charset="UTF-8">
+  <title>Avocado Organiser</title>
+  <script src="render.js" defer></script>
+  <link rel="stylesheet" href="index.css">
+</head>
 
+<body>
+  <div class="main-container">
+    <img src="./assets/avo_org_app.png" alt="Avocado_Organiser_Logo" />
 
-      <p>Avocado organiser will sort all your files for creation date, then put them in folders for year > month > day.</p>
+    <h2>Use when you have a mess of files!</h2>
+    <p>Avocado organiser will sort all your files for creation date, then puts them in folders for each file in a year > month > day format</p>
 
-      <label>Select the folder you want to organise: </label>
-      <div class="button-container">
-        <button id="source" class="button-pick">Pick The Mess</button>
-        <div class="display-folder">You selected: <span id="output"></span></div>
-      </div> 
-      <label>Select the folder where you want your tidy folder: </label>
-      <div class="button-container"> 
-        <button id="destination" class="button-pick">Put it here</button>
-        <div class="display-folder">You selected: <span></span></div>
-      </div>  
-      <hr>
-      <div class="button-container-start"> 
-        <button id="start" class="button-submit">Organise It</button>
+    <label>Select the folder you want to organise: </label>
+    <div class="button-container">
+      <button id="source" class="button-pick">Pick The Mess</button>
+      <div class="display-folder">You selected: <span id="input"></span></div>
+    </div>
+    <label>Select the folder where you want your tidy folder: </label>
+    <div class="button-container">
+      <button id="destination" class="button-pick">Put it here</button>
+      <div class="display-folder">You selected: <span id=output></span></div>
+    </div>
+    <hr>
+    <div class="button-container-start">
+      <button id="start" class="button-submit">Organise It</button>
       <div>
         <div class="success">
           <p>All Done!</p>
+        </div>
       </div>
-    </div>
-  </body>
+</body>
+
 </html>
