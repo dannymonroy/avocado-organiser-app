@@ -1,6 +1,8 @@
 const fs = require('fs');
+const path = require('path');
 //Global Variable to keep track of name repeated files moved.
-let count = 1;
+let count = 0;
+
 
 module.exports = {
 
@@ -13,21 +15,21 @@ module.exports = {
   },
 
   createYearFolder: function (destination, year) {
-    console.log('Create year: ', destination, year)
-    if (!fs.existsSync(`${destination}/${year}`)) {
-      fs.mkdirSync(`${destination}/${year}`);
-      console.log(`${year} created!`)
+    const yearDir = path.join(destination, year);
+    if (!fs.existsSync(yearDir)) {
+      fs.mkdirSync(yearDir);
     }
   },
   createMonthFolder: function (destination, year, month) {
-    if (!fs.existsSync(`${destination}/${year}/${month}`)) {
-      fs.mkdirSync(`${destination}/${year}/${month}`);
-      console.log(`${month} created!`)
+    const monthDir = path.join(destination, year, month);
+    if (!fs.existsSync(monthDir)) {
+      fs.mkdirSync(monthDir);
     }
   },
   createDayFolder: function (destination, year, month, day) {
-    if (!fs.existsSync(`${destination}/${year}/${month}/${day}`)) {
-      fs.mkdirSync(`${destination}/${year}/${month}/${day}`);
+    const dayDir = path.join(destination, year, month, day);
+    if (!fs.existsSync(dayDir)) {
+      fs.mkdirSync(dayDir);
     }
   },
 
@@ -37,16 +39,19 @@ module.exports = {
     this.createDayFolder(destination, date[0], date[1], date[2])
   },
 
- moveFile: function (path, destination, file, date) {
-    const source = `${path}/${file}`
-    let destinationPath = `${destination}/${date[0]}/${date[1]}/${date[2]}/${file}`;
-    if(!fs.existsSync(destinationPath)){
-      fs.renameSync(source, destinationPath)
+  moveFile: function(sourcePath, destinationPath, file, date){
+    const moveFrom = path.join(sourcePath, file)
+    let moveTo = path.join(destinationPath, date[0], date[1], date[2], file);
+
+    if(!fs.existsSync(moveTo)){
+      fs.renameSync(moveFrom, moveTo);
     } else {
-      const [fileName, ext] = [...file.split('.')]
-      destinationPath = `${destination}/${date[0]}/${date[1]}/${date[2]}/${fileName}${count}.${ext}`;
-      fs.renameSync(source, destinationPath)
+      const [fileName, ext] = [...file.split('.')];
+
+      moveTo = path.join(destinationPath, date[0], date[1], date[2] ,`${fileName}${count}.${ext}`);
+      fs.renameSync(moveFrom, moveTo)
       count = count + 1;
+      console.log(count);
     }
   },
 
@@ -56,9 +61,14 @@ module.exports = {
   },
 
   updateUponSuccess: function(inputElem, outputElem, successElem){
+    count = 0;
     inputElem.innerHTML = "";
     outputElem.innerHTML = "";
     successElem.style.visibility = 'visible';
+  },
+
+  getPaths: function(data) {
+   return data.filePaths[0].split(path.sep);
   }
 
 }
