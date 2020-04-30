@@ -10,7 +10,6 @@ const btnDestination = document.getElementById('destination');
 const btnStart = document.getElementById('start');
 const spanSource = document.getElementById('input');
 const spanDestination = document.getElementById('output');
-const success = document.getElementById('success');
 
 //App Imports
 const utils = require('./utils.js');
@@ -44,16 +43,14 @@ btnDestination.addEventListener('click', () => {
 btnStart.addEventListener('click', () => {
   try{
     getAllFiles(sourcePath, destinationPath);
-    utils.updateUponSuccess(spanSource, spanDestination, success);
+    utils.updateUponSuccess(spanSource, spanDestination, btnStart);
+    sourcePath = '';
+    destinationPath = '';
   } catch (err) {
     console.log('No folder with that name in this location', err);
   }
 
 })
-
-success.addEventListener('click', (event) => {
-  event.target.style.visibility = "hidden";
-});
 
 //Main Script
 

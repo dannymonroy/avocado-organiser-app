@@ -47,11 +47,9 @@ module.exports = {
       fs.renameSync(moveFrom, moveTo);
     } else {
       const [fileName, ext] = [...file.split('.')];
-
       moveTo = path.join(destinationPath, date[0], date[1], date[2] ,`${fileName}${count}.${ext}`);
       fs.renameSync(moveFrom, moveTo)
       count = count + 1;
-      console.log(count);
     }
   },
 
@@ -60,11 +58,30 @@ module.exports = {
     elem.innerHTML = arr.pop();
   },
 
-  updateUponSuccess: function(inputElem, outputElem, successElem){
+  updateUponSuccess: function(inputElem, outputElem, btnStart){
     count = 0;
+    const myNotification = new Notification('Title', {
+      body: 'All done!'
+    })
+    
+    myNotification.onclick = () => {
+      console.log('Notification clicked');
+      btnStart.innerHTML = "Organise It"
+      btnStart.style.backgroundColor = "#603217"
+      btnStart.disabled = false;
+    }
+    
     inputElem.innerHTML = "";
     outputElem.innerHTML = "";
-    successElem.style.visibility = 'visible';
+    btnStart.innerHTML = "ALL DONE"
+    btnStart.style.backgroundColor = "green"
+    btnStart.disabled = true;
+
+    setInterval(() =>{
+      btnStart.innerHTML = "Organise It"
+      btnStart.style.backgroundColor = "#603217"
+      btnStart.disabled = false;
+    }, 4000)
   },
 
   getPaths: function(data) {

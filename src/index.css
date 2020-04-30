@@ -41,6 +41,10 @@ img{
   color: #FFFFFF
 }
 
+span{
+  font-weight: bold;
+}
+
 .button-pick:hover{
   font-weight: bold;
   background-color: #603217;
@@ -86,7 +90,7 @@ img{
 .button-submit:hover{
   background-color: #9BCB4D;
   font-weight: bold;
-  color: #603217;
+  color: black;
 }
 
 
