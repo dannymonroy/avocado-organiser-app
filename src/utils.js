@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 //Global Variable to keep track of name repeated files moved.
 let count = 1;
 
@@ -13,21 +14,21 @@ module.exports = {
   },
 
   createYearFolder: function (destination, year) {
-    console.log('Create year: ', destination, year)
-    if (!fs.existsSync(`${destination}/${year}`)) {
-      fs.mkdirSync(`${destination}/${year}`);
-      console.log(`${year} created!`)
+    const yearDir = path.join(destination, year);
+    if (!fs.existsSync(yearDir)) {
+      fs.mkdirSync(yearDir);
     }
   },
   createMonthFolder: function (destination, year, month) {
-    if (!fs.existsSync(`${destination}/${year}/${month}`)) {
-      fs.mkdirSync(`${destination}/${year}/${month}`);
-      console.log(`${month} created!`)
+    const monthDir = path.join(destination, year, month);
+    if (!fs.existsSync(monthDir)) {
+      fs.mkdirSync(monthDir);
     }
   },
   createDayFolder: function (destination, year, month, day) {
-    if (!fs.existsSync(`${destination}/${year}/${month}/${day}`)) {
-      fs.mkdirSync(`${destination}/${year}/${month}/${day}`);
+    const dayDir = path.join(destination, year, month, day);
+    if (!fs.existsSync(dayDir)) {
+      fs.mkdirSync(dayDir);
     }
   },
 
