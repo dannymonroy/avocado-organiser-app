@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 //Global Variable to keep track of name repeated files moved.
-let count = 1;
+let count = 0;
+
 
 module.exports = {
 
@@ -45,9 +46,13 @@ module.exports = {
     if(!fs.existsSync(moveTo)){
       fs.renameSync(moveFrom, moveTo);
     } else {
-      console.log('Repeated file!');
+      const [fileName, ext] = [...file.split('.')];
+
+      moveTo = path.join(destinationPath, date[0], date[1], date[2] ,`${fileName}${count}.${ext}`);
+      fs.renameSync(moveFrom, moveTo)
+      count = count + 1;
+      console.log(count);
     }
-    
   },
 
   displayFolder: function(elem, str){
@@ -56,6 +61,7 @@ module.exports = {
   },
 
   updateUponSuccess: function(inputElem, outputElem, successElem){
+    count = 0;
     inputElem.innerHTML = "";
     outputElem.innerHTML = "";
     successElem.style.visibility = 'visible';

@@ -58,7 +58,6 @@ success.addEventListener('click', (event) => {
 //Main Script
 
 function getAllFiles(sourcePath, destinationPath){
-  
   const arrFiles = fs.readdirSync(sourcePath, {withFileTypes: true});
   for(const fileObj of arrFiles){
     let sourcePathPlusFile = path.join(sourcePath, fileObj.name);
