@@ -38,17 +38,16 @@ module.exports = {
     this.createDayFolder(destination, date[0], date[1], date[2])
   },
 
- moveFile: function (path, destination, file, date) {
-    const source = `${path}/${file}`
-    let destinationPath = `${destination}/${date[0]}/${date[1]}/${date[2]}/${file}`;
-    if(!fs.existsSync(destinationPath)){
-      fs.renameSync(source, destinationPath)
+  moveFile: function(sourcePath, destinationPath, file, date){
+    const moveFrom = path.join(sourcePath, file)
+    let moveTo = path.join(destinationPath, date[0], date[1], date[2], file);
+
+    if(!fs.existsSync(moveTo)){
+      fs.renameSync(moveFrom, moveTo);
     } else {
-      const [fileName, ext] = [...file.split('.')]
-      destinationPath = `${destination}/${date[0]}/${date[1]}/${date[2]}/${fileName}${count}.${ext}`;
-      fs.renameSync(source, destinationPath)
-      count = count + 1;
+      console.log('Repeated file!');
     }
+    
   },
 
   displayFolder: function(elem, str){
@@ -60,6 +59,10 @@ module.exports = {
     inputElem.innerHTML = "";
     outputElem.innerHTML = "";
     successElem.style.visibility = 'visible';
+  },
+
+  getPaths: function(data) {
+   return data.filePaths[0].split(path.sep);
   }
 
 }

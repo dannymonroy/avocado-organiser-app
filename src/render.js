@@ -1,5 +1,6 @@
 // Core Module Imports
 const fs = require('fs');
+const path = require('path');
 //Electron Imports
 const { dialog } = require('electron').remote;
 
@@ -24,8 +25,9 @@ btnSource.addEventListener('click', () => {
   dialog.showOpenDialog({
     properties: ['openDirectory']
   }).then((data) =>{
-    sourcePath = data.filePaths[0];
-    utils.displayFolder(spanSource, sourcePath);
+    const sourcePathObj = path.parse(data.filePaths[0]);
+    sourcePath = path.format(sourcePathObj); //path str
+    utils.displayFolder(spanSource, sourcePathObj.name);
   })
 })
 
@@ -33,8 +35,9 @@ btnDestination.addEventListener('click', () => {
   dialog.showOpenDialog({
     properties: ['openDirectory']
   }).then((data) =>{
-    destinationPath = data.filePaths[0];
-    utils.displayFolder(spanDestination, destinationPath);
+    const destinationPathObj = path.parse(data.filePaths[0]);
+    destinationPath = path.format(destinationPathObj);
+    utils.displayFolder(spanDestination, destinationPathObj.name);
   });
 })
 
@@ -54,15 +57,18 @@ success.addEventListener('click', (event) => {
 
 //Main Script
 
-function getAllFiles(path, destination){
-  const arrFiles = fs.readdirSync(path, {withFileTypes: true});
-  for(const file of arrFiles){
-    let date = utils.getDate(`${path}/${file.name}`);
-    if(file.isDirectory()){
-      getAllFiles(`${path}/${file.name}`, destination);
+function getAllFiles(sourcePath, destinationPath){
+  
+  const arrFiles = fs.readdirSync(sourcePath, {withFileTypes: true});
+  for(const fileObj of arrFiles){
+    let sourcePathPlusFile = path.join(sourcePath, fileObj.name);
+    let date = utils.getDate(sourcePathPlusFile);
+    if(fileObj.isDirectory()){
+      getAllFiles(sourcePathPlusFile, destinationPath);
     } else {
-      utils.createFolderStructure(date, destination)
-      utils.moveFile(path, destination, file.name, date);
+      utils.createFolderStructure(date, destinationPath)
+      utils.moveFile(sourcePath, destinationPath, fileObj.name, date);
     }
   }
 }
+
