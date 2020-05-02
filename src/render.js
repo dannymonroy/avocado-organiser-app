@@ -1,15 +1,18 @@
 // Core Module Imports
 const fs = require('fs');
 const path = require('path');
+
 //Electron Imports
 const { dialog } = require('electron').remote;
+const shell = require('electron').shell;
 
-// Dom Elements
+// DOM Elements
 const btnSource = document.getElementById('source');
 const btnDestination = document.getElementById('destination');
 const btnStart = document.getElementById('start');
 const spanSource = document.getElementById('input');
 const spanDestination = document.getElementById('output');
+const link = document.getElementById("link");
 
 //App Imports
 const utils = require('./utils.js');
@@ -18,7 +21,7 @@ const utils = require('./utils.js');
 let sourcePath;
 let destinationPath;
 
-//Event handlers
+//Event Handlers
 
 btnSource.addEventListener('click', () => {
   dialog.showOpenDialog({
@@ -28,7 +31,7 @@ btnSource.addEventListener('click', () => {
     sourcePath = path.format(sourcePathObj); //path str
     utils.displayFolder(spanSource, sourcePathObj.name);
   })
-})
+});
 
 btnDestination.addEventListener('click', () => {
   dialog.showOpenDialog({
@@ -38,7 +41,7 @@ btnDestination.addEventListener('click', () => {
     destinationPath = path.format(destinationPathObj);
     utils.displayFolder(spanDestination, destinationPathObj.name);
   });
-})
+});
 
 btnStart.addEventListener('click', () => {
   try{
@@ -51,8 +54,12 @@ btnStart.addEventListener('click', () => {
       body: 'You have to pick a folder from to'
     })
   }
+});
 
-})
+link.addEventListener('click', (event) => {
+  event.preventDefault();
+  shell.openExternal("https://github.com/dannymonroy/avocado-organiser-app")
+});
 
 //Main Script
 
