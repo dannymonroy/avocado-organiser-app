@@ -1,8 +1,8 @@
 {
-  "name": "avocado-organiser-app",
-  "productName": "avocado-organiser-app",
+  "name": "Avocado Organiser",
+  "productName": "Avocado Organiser",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Avocado organiser will sort all your files for creation date, then puts them in folders for each file in a year > month > day format.",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -11,12 +11,12 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
-  "keywords": [],
+  "keywords": ["Electron App", "NodeJS"],
   "author": {
     "name": "Danny Monroy",
     "email": "danny.p.monroy@gmail.com"
   },
-  "license": "MIT",
+  "license": "Mozilla Public License 2.0",
   "config": {
     "forge": {
       "packagerConfig": {},
