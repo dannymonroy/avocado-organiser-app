@@ -47,7 +47,9 @@ btnStart.addEventListener('click', () => {
     sourcePath = '';
     destinationPath = '';
   } catch (err) {
-    console.log('No folder with that name in this location', err);
+    new Notification('Title', {
+      body: 'You have to pick a folder from to'
+    })
   }
 
 })

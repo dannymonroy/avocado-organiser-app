@@ -60,12 +60,11 @@ module.exports = {
 
   updateUponSuccess: function(inputElem, outputElem, btnStart){
     count = 0;
-    const myNotification = new Notification('Title', {
+    const successNotification = new Notification('Title', {
       body: 'All done!'
     })
     
-    myNotification.onclick = () => {
-      console.log('Notification clicked');
+    successNotification.onclick = () => {
       btnStart.innerHTML = "Organise It"
       btnStart.style.backgroundColor = "#603217"
       btnStart.disabled = false;
