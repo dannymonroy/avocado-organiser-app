@@ -118,3 +118,14 @@ hr{
   visibility: hidden;
   cursor: pointer;
 }
+
+footer{
+  margin-top: 30px;
+  text-align: center;
+}
+
+footer a{
+  color: #603217;
+  text-decoration: none;
+}
+
