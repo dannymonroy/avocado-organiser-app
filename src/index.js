@@ -11,6 +11,7 @@ const createWindow = () => {
     height: 800,
     minWidth: 400,
     minHeight: 500,
+    icon: __dirname + path.join(path.sep, 'assets', 'avo_org.ico'),
     webPreferences:{
       nodeIntegration: true,
     }
@@ -20,7 +21,6 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
 };
-
 app.on('ready', createWindow);
 
 
