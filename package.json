@@ -1,5 +1,5 @@
 {
-  "name": "Avocado Organiser",
+  "name": "avocado-organiser-app",
   "productName": "Avocado Organiser",
   "version": "1.0.0",
   "description": "Avocado organiser will sort all your files for creation date, then puts them in folders for each file in a year > month > day format.",
